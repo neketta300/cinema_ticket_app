@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cinema_ticket_app/Cinema%20App%20UI/consts.dart';
+import 'package:cinema_ticket_app/Cinema%20App%20UI/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_ticket_app/Cinema%20App%20UI/models/category_model.dart';
 import 'package:cinema_ticket_app/Cinema%20App%20UI/pages/detail_page.dart';
@@ -15,6 +16,7 @@ class HomePageCinema extends StatefulWidget {
 }
 
 class _HomePageCinemaState extends State<HomePageCinema> {
+  final _auth = AuthService();
   late PageController controller;
   double pageoffSet = 1;
   int currentIndex = 1;
@@ -253,6 +255,8 @@ class _HomePageCinemaState extends State<HomePageCinema> {
   }
 
   AppBar headerParts() {
+    final email = _auth.getCurrentUserEmail();
+
     return AppBar(
       backgroundColor: appBackgroundColor,
       title: Padding(
@@ -260,14 +264,14 @@ class _HomePageCinemaState extends State<HomePageCinema> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text.rich(
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: "Welcome Angelina ",
+                        text: "Welcome  $email",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
