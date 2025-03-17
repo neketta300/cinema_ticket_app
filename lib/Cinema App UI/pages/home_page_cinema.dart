@@ -5,6 +5,7 @@ import 'package:cinema_ticket_app/Cinema%20App%20UI/services/auth/auth_service.d
 import 'package:flutter/material.dart';
 import 'package:cinema_ticket_app/Cinema%20App%20UI/models/category_model.dart';
 import 'package:cinema_ticket_app/Cinema%20App%20UI/pages/detail_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/movie_model.dart';
 
@@ -16,6 +17,7 @@ class HomePageCinema extends StatefulWidget {
 }
 
 class _HomePageCinemaState extends State<HomePageCinema> {
+  final superbase = Supabase.instance.client;
   final _auth = AuthService();
   late PageController controller;
   double pageoffSet = 1;
@@ -205,7 +207,7 @@ class _HomePageCinemaState extends State<HomePageCinema> {
             Container(
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                color: Colors.white10.withOpacity(0.05),
+                color: Colors.white10.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Image.asset(
