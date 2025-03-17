@@ -1,4 +1,5 @@
 import 'package:cinema_ticket_app/Cinema%20App%20UI/pages/profile_page.dart';
+import 'package:cinema_ticket_app/Cinema%20App%20UI/pages/search_cinema_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_ticket_app/Cinema%20App%20UI/consts.dart';
@@ -26,7 +27,7 @@ class _CinemaMainScreenState extends State<CinemaMainScreen> {
   void initState() {
     page = [
       const HomePageCinema(),
-      navBarPage(CupertinoIcons.compass_fill),
+      const SearchCinemaScreen(),
       navBarPage(CupertinoIcons.ticket_fill),
       const ProfilePage(),
     ];
