@@ -20,15 +20,14 @@ class _ProfilePageState extends State<ProfilePage> {
   };
   final _auth = AuthService();
   final supabase = Supabase.instance.client;
-  String? currentUserName; // Переменная для хранения имени пользователя
+  String? currentUserName;
 
   @override
   void initState() {
     super.initState();
-    _fetchUserName(); // Загружаем имя пользователя при инициализации
+    _fetchUserName();
   }
 
-  // Функция для получения имени пользователя
   Future<void> _fetchUserName() async {
     final username = await fetchCurrentUserName();
     setState(() {
@@ -64,23 +63,20 @@ class _ProfilePageState extends State<ProfilePage> {
         return null;
       }
 
-      return response['data']['username'] as String?;
+      return response['data']['name'] as String?;
     } catch (e) {
       print('Ошибка: $e');
       return null;
     }
   }
 
-  // Функция выхода из аккаунта
   void logout() async {
     await _auth.signOut();
     // try {
-    //   // После успешного выхода перенаправляем на экран входа
     //   if (mounted) {
     //     Navigator.pushReplacementNamed(context, '/login');
     //   }
     // } catch (e) {
-    //   // Обработка ошибки выхода
     //   if (mounted) {
     //     ScaffoldMessenger.of(context).showSnackBar(
     //       SnackBar(content: Text('Ошибка при выходе: $e')),
@@ -104,9 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           SizedBox(height: 25),
           Text(
-            currentUserName != null
-                ? currentUserName!
-                : 'Guest', // Отображаем имя пользователя
+            currentUserName != null ? currentUserName! : 'Guest',
             style: TextStyle(color: Colors.white, fontSize: 24),
           ),
           SizedBox(height: 25),
@@ -119,21 +113,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 // Определяем скругление углов в зависимости от индекса
                 BorderRadius borderRadius;
                 if (index == 0) {
-                  // Первый элемент: скругляем только верхние углы
                   borderRadius = BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   );
                 } else if (index == profileSettings.length - 1) {
-                  // Последний элемент: скругляем только нижние углы
                   borderRadius = BorderRadius.only(
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15),
                   );
                 } else {
-                  // Средние элементы: без скругления
                   borderRadius = BorderRadius.zero;
                 }
+
+                // Устанавливаем цвет для "Logout"
+                final isLogout = setting == 'Logout';
+                final itemColor = isLogout ? Colors.red : Colors.white;
 
                 return GestureDetector(
                   onTap: () {
@@ -146,9 +141,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
-                      color: Colors.white
-                          .withOpacity(0.1), // Фон для элементов списка
-                      borderRadius: borderRadius, // Применяем скругление
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: borderRadius,
                     ),
                     child: Padding(
                       padding:
@@ -157,23 +151,27 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Icon(
                             icon,
-                            color: Colors.white,
+                            color:
+                                itemColor, // Красный для "Logout", белый для остальных
                             size: 24,
                           ),
                           SizedBox(width: 15),
                           Text(
                             setting,
                             style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  itemColor, // Красный для "Logout", белый для остальных
                               fontSize: 16,
                             ),
                           ),
                           Spacer(),
-                          Icon(
-                            Icons.chevron_right,
-                            color: buttonColor,
-                            size: 24,
-                          ),
+                          // Показываем стрелку только если это не "Logout"
+                          if (!isLogout)
+                            Icon(
+                              Icons.chevron_right,
+                              color: buttonColor,
+                              size: 24,
+                            ),
                         ],
                       ),
                     ),
