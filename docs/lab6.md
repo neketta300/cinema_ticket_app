@@ -81,20 +81,26 @@
 - **До:** Клавиатура не закрывается, а продолжает висеть при скроле результатов поиска.
 - **После:** Клавиатуры закрываается при скроле результатов поиска.
 - **Видео:**
-  - До:
+  
+До:
+
 https://github.com/user-attachments/assets/44dc6c52-6734-47e8-b1f6-917cea019ae4 
-  - После:
+
+После:
+
 https://github.com/user-attachments/assets/c79d2552-c932-40e1-9459-a2ca4bb96393
-
-
 
 ### Кнопка "Logout" и стрелка
 - **До:** Кнопка белая с низкой контрастностью, стрелки сливается с другими элементами.
 - **После:** Кнопка красная, стрелка оранжевая для визуального выделения.
 - **Скриншоты:**
-  - До:
+  
+До:
+
 ![losChevrScreenBefore](https://github.com/user-attachments/assets/43185b48-58ff-428e-b371-c6de94d8ea3b)
-  - После:
+
+После:
+
 ![losChevrScreenAfter](https://github.com/user-attachments/assets/24c6c08d-75d9-42e3-9bd0-f9b979bbdabd)
 
 
